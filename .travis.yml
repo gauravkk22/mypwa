@@ -1,7 +1,47 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
- - rbx-2
-# uncomment and edit the following line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+language: python
+pyhton :
+    - "2.6"
+    - "2.7"
+matrix:
+  include:
+  - os: linux
+    dist: trusty
+    python: '2.6'
+  - os: linux
+    dist: trusty
+    python: '2.7'
+  - os: linux
+    dist: trusty
+    python: '3.3'
+  - os: linux
+    dist: trusty
+    python: '3.4'
+  - os: linux
+    dist: trusty
+    python: '3.5'
+  - os: linux
+    dist: trusty
+    python: '3.6'
+  - os: linux
+    dist: trusty
+    python: pypy
+  - os: osx
+    language: objective-c
+    env: PYENV_VERSION=2.7.12
+  - os: osx
+    language: objective-c
+    env: PYENV_VERSION=3.5.2
+install:
+- "./.travis/install.sh"
+script:
+- "./.travis/run.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: QiadMGAmtPw+Ut7LWqa3U/tImPIgiPH79mM9o8DGBckcacp9HkDYvCGuOjs5hZbCBBuQ6IAkikotS8iCSwHey1GK9jSDbpgKvVGiACdp8HNhitY8V/S3e1UukDlMeu+Q7vCJtynSGX0BJuiOQB8ZQyQ2HEZ7kMQgTLCEO1Uljhc=
+  file: dist/*.whl
+  file_glob: true
+  on:
+    repo: simplejson/simplejson
+    tags: true
+  skip_cleanup: true
