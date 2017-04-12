@@ -1,11 +1,8 @@
 language: node_js
-sudo: false
+sudo: true
 cache:
   directories:
   - node_modules
-install:
-- npm install -g bower
-script:
 deploy:
   - provider: firebase
     skip_cleanup: true
