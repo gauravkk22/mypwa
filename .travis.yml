@@ -6,7 +6,6 @@ cache:
 install:
 - npm install -g bower
 script:
-- npm test
 deploy:
   - provider: firebase
     skip_cleanup: true
