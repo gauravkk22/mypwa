@@ -66,29 +66,29 @@ class ve_build_ext(build_ext):
             raise BuildFailed()
 
 
-class TestCommand(Command):
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        import sys, subprocess
-        raise SystemExit(
-            subprocess.call([sys.executable,
-                             # Turn on deprecation warnings
-                             '-Wd',
-                             'simplejson/tests/__init__.py']))
+# class TestCommand(Command):
+#     user_options = []
+#
+#     def initialize_options(self):
+#         pass
+#
+#     def finalize_options(self):
+#         pass
+#
+#     def run(self):
+#         import sys, subprocess
+#         raise SystemExit(
+#             subprocess.call([sys.executable,
+#                              # Turn on deprecation warnings
+#                              '-Wd',
+#                              'simplejson/tests/__init__.py']))
 
 def run_setup(with_binary):
     cmdclass = dict(test=TestCommand)
     if with_binary:
         kw = dict(
             ext_modules = [
-                Extension("simplejson._speedups", ["simplejson/_speedups.c"]),
+                Extension("_speedups", ["_speedups.c"]),
             ],
             cmdclass=dict(cmdclass, build_ext=ve_build_ext),
         )
