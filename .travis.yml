@@ -32,7 +32,7 @@ matrix:
     language: objective-c
     env: PYENV_VERSION=3.5.2
 before_install:
- - "chmod +x ./.travis"
+ - "chmod +x .travis/install.sh"
 install:
 - "./.travis/install.sh"
 script:
