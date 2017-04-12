@@ -14,7 +14,7 @@ IS_PYPY = hasattr(sys, 'pypy_translation_info')
 VERSION = '3.10.0'
 DESCRIPTION = "Simple, fast, extensible JSON encoder/decoder for Python"
 
-with open('README.rst', 'r') as f:
+with open('README.md', 'r') as f:
    LONG_DESCRIPTION = f.read()
 
 CLASSIFIERS = filter(None, map(str.strip,
