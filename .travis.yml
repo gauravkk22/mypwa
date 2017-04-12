@@ -42,6 +42,6 @@ deploy:
   file: dist/*.whl
   file_glob: true
   on:
-    repo: simplejson/simplejson
+    repo: gauravkk22/mypwa
     tags: true
   skip_cleanup: true
