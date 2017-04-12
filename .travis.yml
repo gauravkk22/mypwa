@@ -6,6 +6,7 @@ cache:
   - bower_components
 install:
 - npm install -g bower
+- npm init
 - npm install
 - bower install
 script:
