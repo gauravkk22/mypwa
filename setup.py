@@ -80,8 +80,8 @@ class TestCommand(Command):
         raise SystemExit(
             subprocess.call([sys.executable,
                              # Turn on deprecation warnings
-                             '-Wd'
-                             ]))
+                             '-Wd',
+                             'tests/__init__.py']))
 
 def run_setup(with_binary):
     cmdclass = dict(test=TestCommand)
