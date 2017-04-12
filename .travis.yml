@@ -32,19 +32,19 @@ matrix:
     language: objective-c
     env: PYENV_VERSION=3.5.2
 before_install:
- - "chmod +x .travis/install.sh"
- - "chmod +x .travis/run.sh"
-install:
-- "./.travis/install.sh"
-script:
-- "./.travis/run.sh"
 deploy:
-  provider: releases
-  api_key:
-    secure: QiadMGAmtPw+Ut7LWqa3U/tImPIgiPH79mM9o8DGBckcacp9HkDYvCGuOjs5hZbCBBuQ6IAkikotS8iCSwHey1GK9jSDbpgKvVGiACdp8HNhitY8V/S3e1UukDlMeu+Q7vCJtynSGX0BJuiOQB8ZQyQ2HEZ7kMQgTLCEO1Uljhc=
-  file: dist/*.whl
-  file_glob: true
-  on:
-    repo: gauravkk22/mypwa
-    tags: true
+  # deploy develop to the staging environment
+  - provider: firebase
+    token:
+        secure: "1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo"
+    project : mypwa-8fc19
+    on:
+      branch: develop
+  # deploy master to production
+  - provider: firebase
+    token:
+        secure: "1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo"
+    project: mypwa-8fc19
+    on:
+      branch: master
   skip_cleanup: true
