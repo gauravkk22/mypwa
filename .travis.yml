@@ -1,8 +1,4 @@
 language: node_js
-sudo: true
-cache:
-  directories:
-  - node_modules
 deploy:
   - provider: firebase
     skip_cleanup: true
