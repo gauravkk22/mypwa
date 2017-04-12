@@ -1,50 +1,32 @@
-language: python
-pyhton :
-    - "2.6"
-    - "2.7"
-matrix:
-  include:
-  - os: linux
-    dist: trusty
-    python: '2.6'
-  - os: linux
-    dist: trusty
-    python: '2.7'
-  - os: linux
-    dist: trusty
-    python: '3.3'
-  - os: linux
-    dist: trusty
-    python: '3.4'
-  - os: linux
-    dist: trusty
-    python: '3.5'
-  - os: linux
-    dist: trusty
-    python: '3.6'
-  - os: linux
-    dist: trusty
-    python: pypy
-  - os: osx
-    language: objective-c
-    env: PYENV_VERSION=2.7.12
-  - os: osx
-    language: objective-c
-    env: PYENV_VERSION=3.5.2
-before_install:
+language: node_js
+sudo: false
+cache:
+  directories:
+  - node_modules
+  - bower_components
+install:
+- npm install -g bower
+- npm install
+- bower install
+script:
+- npm test
 deploy:
-  # deploy develop to the staging environment
   - provider: firebase
+    skip_cleanup: true
     token:
-        secure: "1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo"
-    project : mypwa-8fc19
+      secure: 1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo/XkZ1SUBowqO1qgx0WBZHYiGks1z8rBnnpW3E2NpNAvf2yhiALTNTTvgZ/v8Nv4qX0K58mus8LxjV+2pKyAu3+/B0gdvUl8Cxj8alIuEPAZm8I=
+    project: mypwa-8fc19
+    local-dir: dist
+    acl: public_read
     on:
       branch: develop
-  # deploy master to production
+      tags: true
   - provider: firebase
+    skip_cleanup: true
     token:
-        secure: "1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo"
+      secure: 1/h2akyvFFMwmaZtZ0gq8-Iz9u7gcaf8edfFuLeW-3NKo/XkZ1SUBowqO1qgx0WBZHYiGks1z8rBnnpW3E2NpNAvf2yhiALTNTTvgZ/v8Nv4qX0K58mus8LxjV+2pKyAu3+/B0gdvUl8Cxj8alIuEPAZm8I=
     project: mypwa-8fc19
+    local-dir: dist
+    acl: public_read
     on:
       branch: master
-  skip_cleanup: true
